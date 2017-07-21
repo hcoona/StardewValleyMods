@@ -1,0 +1,13 @@
+﻿{
+  "Name": "FishingAdjustMod",
+  "Author": "Shuai Zhang",
+  "Version": {
+    "MajorVersion": 1,
+    "MinorVersion": 0,
+    "PatchVersion": 1,
+    "Build": null
+  },
+  "Description": "This mod helps to adjust fishing difficulty.",
+  "UniqueID": "shuaiz.FishingAdjustMod",
+  "EntryDll": "FishingAdjustMod.dll"
+}
