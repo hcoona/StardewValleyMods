@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using Harmony;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -9,14 +11,14 @@ namespace FishingAdjustMod
 {
     public class Main : Mod
     {
-        private Config Config { get; set; }
-
         public override void Entry(IModHelper helper)
         {
             base.Entry(helper);
 
             helper.ConsoleCommands.Add("dump_fishingData", "Dump loaded fishing data. You can specify item numbers to dump specified fishes.", (_, args) => DumpFishingData(args));
-            Config = helper.ReadConfig<Config>();
+            Global.Monitor = Monitor;
+            Global.Config = helper.ReadConfig<Config>();
+            // TODO: Verify Config values
 
             ControlEvents.KeyPressed += this.ControlEvents_KeyPressed;
             ContentEvents.AfterLocaleChanged += this.ContentEvents_AfterLocaleChanged;
@@ -90,10 +92,14 @@ namespace FishingAdjustMod
                 var dataGroup = fishingData[k].Split('/');
                 if (int.TryParse(dataGroup[1], out int level))
                 {
-                    dataGroup[1] = ((int)(level * Config.AdjustRatio)).ToString();
+                    dataGroup[1] = ((int)(level * Global.Config.AdjustRatio)).ToString();
                     fishingData[k] = string.Join("/", dataGroup);
                 }
             }
+
+            var harmony = HarmonyInstance.Create("io.github.hcoona.StardrewValleyMods.FishingAdjustMod");
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
+
             Monitor.Log("Fishing difficulty adjusted.", LogLevel.Info);
         }
     }

@@ -43,7 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="PatchBeachGetFish.cs" />
+    <Compile Include="PatchForestGetFish.cs" />
+    <Compile Include="PatchMountainGetFish.cs" />
+    <Compile Include="PatchSewerGetFish.cs" />
+    <Compile Include="PatchTownGetFish.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +63,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="manifest.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dependencies\Harmony\Harmony\Harmony.csproj">
+      <Project>{69aee16a-b6e7-4642-8081-3928b32455df}</Project>
+      <Name>Harmony</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
