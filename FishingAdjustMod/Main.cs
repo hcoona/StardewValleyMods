@@ -94,7 +94,7 @@ namespace FishingAdjustMod
                     fishingData[k] = string.Join("/", dataGroup);
                 }
             }
-            Monitor.Log("Fishing difficulty adjusted.");
+            Monitor.Log("Fishing difficulty adjusted.", LogLevel.Info);
         }
     }
 }
