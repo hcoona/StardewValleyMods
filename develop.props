@@ -4,4 +4,39 @@
     <GamePath>E:\Games\SteamLibrary\steamapps\common\Stardew Valley\</GamePath>
     <DeployModFolderName>$(MSBuildProjectName)</DeployModFolderName>
   </PropertyGroup>
+  <PropertyGroup>
+    <ReleasePath>$(SolutionDir)\dist</ReleasePath>
+  </PropertyGroup>
+  <UsingTask
+    TaskName="GetFileVersion"
+    TaskFactory="CodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <AssemblyPath ParameterType="System.String" Required="true" />
+      <Version ParameterType="System.String" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System.Diagnostics" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+          this.Version = FileVersionInfo.GetVersionInfo(this.AssemblyPath).FileVersion;  
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+  <Target Name="Zip" BeforeTargets="AfterBuild">
+    <ItemGroup>
+      <ReleaseFiles Include="$(OutDir)\**\*.*" Exclude="*.vshost.*;*.dll.config" />
+    </ItemGroup>
+    <PropertyGroup>
+      <ReleaseTargetFolder>$(ReleasePath)\$(TargetName)</ReleaseTargetFolder>
+    </PropertyGroup>
+    <RemoveDir Directories="$(ReleaseTargetFolder)" />
+    <MakeDir Directories="$(ReleaseTargetFolder)" />
+    <Copy SourceFiles="@(ReleaseFiles)" DestinationFolder="$(ReleaseTargetFolder)" />
+    <GetFileVersion AssemblyPath="$(TargetPath)">
+      <Output TaskParameter="Version" PropertyName="Version" />
+    </GetFileVersion>
+    <Exec Command="PowerShell -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command Compress-Archive -Path $(ReleaseTargetFolder) -DestinationPath $(ReleaseTargetFolder)-$(Version).zip -Force" />
+  </Target>
 </Project>
