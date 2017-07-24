@@ -4,6 +4,11 @@
     <GamePath>E:\Games\SteamLibrary\steamapps\common\Stardew Valley\</GamePath>
     <DeployModFolderName>$(MSBuildProjectName)</DeployModFolderName>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Pathoschild.Stardew.ModBuildConfig">
+      <Version>1.6.2</Version>
+    </PackageReference>
+  </ItemGroup>
   <PropertyGroup>
     <ReleasePath>$(SolutionDir)\dist</ReleasePath>
   </PropertyGroup>

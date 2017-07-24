@@ -53,11 +53,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Pathoschild.Stardew.ModBuildConfig">
-      <Version>1.6.2</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <Content Include="config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
