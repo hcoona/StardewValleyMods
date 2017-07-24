@@ -18,6 +18,7 @@ namespace FishingAdjustMod
             helper.ConsoleCommands.Add("dump_fishingData", "Dump loaded fishing data. You can specify item numbers to dump specified fishes.", (_, args) => DumpFishingData(args));
             Global.Monitor = Monitor;
             Global.Config = helper.ReadConfig<Config>();
+            helper.WriteConfig(Global.Config);
             // TODO: Verify Config values
 
             ControlEvents.KeyPressed += this.ControlEvents_KeyPressed;

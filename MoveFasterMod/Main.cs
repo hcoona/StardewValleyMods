@@ -14,6 +14,7 @@ namespace MoveFaster
             base.Entry(helper);
 
             Config = helper.ReadConfig<Config>();
+            helper.WriteConfig(Config);
             Monitor.Log(Config.FasterSpeed.ToString());
 
             SaveEvents.AfterLoad += this.SaveEvents_AfterLoad;

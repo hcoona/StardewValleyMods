@@ -26,7 +26,7 @@
   </UsingTask>
   <Target Name="Zip" BeforeTargets="AfterBuild">
     <ItemGroup>
-      <ReleaseFiles Include="$(OutDir)\**\*.*" Exclude="*.vshost.*;*.dll.config" />
+      <ReleaseFiles Include="$(OutDir)\**\*.*" Exclude="*.vshost.*;*.dll.config;config.json" />
     </ItemGroup>
     <PropertyGroup>
       <ReleaseTargetFolder>$(ReleasePath)\$(TargetName)</ReleaseTargetFolder>
