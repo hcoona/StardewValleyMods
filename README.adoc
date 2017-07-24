@@ -8,8 +8,8 @@ This mod helps to adjust fishing difficulty, override the appearance probability
 
 === Features ===
 
-. Adjust fishing difficulties (either enhance or reduce it) by multiplying a ratio to the fishes difficutly level data
-. Override king fishes appearence chance, allow to fish king fishes more than one. (By default turn-off)
+. Adjust fishing difficulties (either enhance or reduce it) by multiplying a ratio to the fishes difficulty level data
+. Override king fishes appearance chance, allow to fish king fishes more than one. (By default turn-off)
 
 === TODO ===
 
@@ -26,4 +26,4 @@ This mod helps player move faster, including walk, run, riding, etc.
 
 == TODO ==
 
-. Msbuild generate both manifest & assembly info
+. MSBuild generate both manifest & assembly info
