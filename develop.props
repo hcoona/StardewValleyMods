@@ -12,7 +12,7 @@
   <PropertyGroup>
     <ReleasePath>$(SolutionDir)\dist</ReleasePath>
   </PropertyGroup>
-  <UsingTask
+  <!--<UsingTask
     TaskName="GetFileVersion"
     TaskFactory="CodeTaskFactory"
     AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
@@ -28,10 +28,10 @@
         ]]>
       </Code>
     </Task>
-  </UsingTask>
+  </UsingTask>-->
   <Target Name="Zip" BeforeTargets="AfterBuild">
     <ItemGroup>
-      <ReleaseFiles Include="$(OutDir)\**\*.*" Exclude="*.vshost.*;*.dll.config;config.json" />
+      <ReleaseFiles Include="$(OutDir)\**\*.*" Exclude="*config.json*;*.vshost.*;*.dll.config;" />
     </ItemGroup>
     <PropertyGroup>
       <ReleaseTargetFolder>$(ReleasePath)\$(TargetName)</ReleaseTargetFolder>
@@ -39,9 +39,34 @@
     <RemoveDir Directories="$(ReleaseTargetFolder)" />
     <MakeDir Directories="$(ReleaseTargetFolder)" />
     <Copy SourceFiles="@(ReleaseFiles)" DestinationFolder="$(ReleaseTargetFolder)" />
-    <GetFileVersion AssemblyPath="$(TargetPath)">
+    <!--<GetFileVersion AssemblyPath="$(TargetPath)">
       <Output TaskParameter="Version" PropertyName="Version" />
-    </GetFileVersion>
+    </GetFileVersion>-->
     <Exec Command="PowerShell -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command Compress-Archive -Path $(ReleaseTargetFolder) -DestinationPath $(ReleaseTargetFolder)-$(Version).zip -Force" />
+  </Target>
+  <!-- Generate AssemblyInfo.cs & manifest.json -->
+  <UsingTask TaskName="GenerateAssemblyInfoAndManifestTask"
+             AssemblyFile="$(SolutionDir)\MSBuildExtensions.dll" />
+  <PropertyGroup>
+    <Author>Shuai Zhang</Author>
+  </PropertyGroup>
+  <Target Name="GenerateAssemblyInfoAndManifest" BeforeTargets="BeforeBuild">
+    <PropertyGroup>
+      <GeneratedAssemblyInfoPath>$(IntermediateOutputPath)\AssemblyInfo_generated.cs</GeneratedAssemblyInfoPath>
+    </PropertyGroup>
+    <GenerateAssemblyInfoAndManifestTask
+      Name="$(ModName)"
+      TargetFileName="$(TargetFileName)"
+      Description="$(Description)"
+      Author="$(Author)"
+      GUID="$(ProjectGuid)"
+      ManifestUniqueID="shuaiz.$(TargetName)"
+      Version="$(Version)"
+      OutputAssemblyInfoFilePath="$(GeneratedAssemblyInfoPath)"
+      OutputManifestFilePath="$(TargetDir)\manifest.json" />
+    <ItemGroup>
+      <Compile Include="$(GeneratedAssemblyInfoPath)" />
+      <FileWrites Include="$(GeneratedAssemblyInfoPath)" />
+    </ItemGroup>
   </Target>
 </Project>

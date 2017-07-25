@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("RunFasterV2")]
+[assembly: AssemblyTitle("MSBuildExtensions")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RunFasterV2")]
+[assembly: AssemblyProduct("MSBuildExtensions")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("2806a958-b6b7-4d6a-92ed-422e6f29a517")]
+[assembly: Guid("8b878147-2ab5-44ef-8033-7b3dd5c77942")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
