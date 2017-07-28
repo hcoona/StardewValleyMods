@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <GamePath>E:\Games\SteamLibrary\steamapps\common\Stardew Valley\</GamePath>
-    <DeployModFolderName>$(MSBuildProjectName)</DeployModFolderName>
-  </PropertyGroup>
+  <Choose>
+    <When Condition="$(CI) == ''">
+      <PropertyGroup>
+        <GamePath>E:\Games\SteamLibrary\steamapps\common\Stardew Valley\</GamePath>
+        <DeployModFolderName>$(MSBuildProjectName)</DeployModFolderName>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <GamePath>$(SolutionDir)\dependency\FakeStardewValley\</GamePath>
+        <DeployModFolderName></DeployModFolderName>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
   <ItemGroup>
     <PackageReference Include="Pathoschild.Stardew.ModBuildConfig">
       <Version>1.6.2</Version>
