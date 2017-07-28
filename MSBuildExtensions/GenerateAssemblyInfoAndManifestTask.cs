@@ -63,6 +63,9 @@ namespace MSBuildExtensions
         private void GenerateAssemblyInfoFile()
         {
             Log.LogMessage("Begin generate assembly info file to {0}", OutputAssemblyInfoFilePath);
+
+            Directory.CreateDirectory(Path.GetDirectoryName(OutputAssemblyInfoFilePath));
+
             File.WriteAllText(OutputAssemblyInfoFilePath, $@"using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -81,6 +84,9 @@ using System.Runtime.InteropServices;
         private void GenerateManifestFile()
         {
             Log.LogMessage("Begin generate manifest file to {0}", OutputManifestFilePath);
+
+            Directory.CreateDirectory(Path.GetDirectoryName(OutputManifestFilePath));
+
             var manifest = new Manifest
             {
                 Name = Name,
