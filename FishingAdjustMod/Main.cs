@@ -21,17 +21,8 @@ namespace FishingAdjustMod
             helper.WriteConfig(Global.Config);
             // TODO: Verify Config values
 
-            ControlEvents.KeyPressed += this.ControlEvents_KeyPressed;
             ContentEvents.AfterLocaleChanged += this.ContentEvents_AfterLocaleChanged;
             SaveEvents.AfterLoad += this.SaveEvents_AfterLoad;
-        }
-
-        private void ControlEvents_KeyPressed(object sender, EventArgsKeyPressed e)
-        {
-            if (e.KeyPressed == Microsoft.Xna.Framework.Input.Keys.P)
-            {
-                new StardewValley.Menus.BobberBar(163, 150, false, 695);
-            }
         }
 
         private void DumpFishingData(string[] args)
