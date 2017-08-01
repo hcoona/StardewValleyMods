@@ -63,6 +63,9 @@ namespace MSBuildExtensions
         private void GenerateAssemblyInfoFile()
         {
             Log.LogMessage("Begin generate assembly info file to {0}", OutputAssemblyInfoFilePath);
+
+            Directory.CreateDirectory(Path.GetDirectoryName(OutputAssemblyInfoFilePath));
+
             File.WriteAllText(OutputAssemblyInfoFilePath, $@"using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -96,6 +99,8 @@ using System.Runtime.InteropServices;
                     Build = Version0.Revision
                 }
             };
+
+            Directory.CreateDirectory(Path.GetDirectoryName(OutputManifestFilePath));
             using (var fs = File.OpenWrite(OutputManifestFilePath))
             {
                 var currentCulture = Thread.CurrentThread.CurrentCulture;
