@@ -3,4 +3,4 @@ sudo: false
 solution: StardewValleyMods.sln
 script:
   - nuget restore StardewValleyMods.sln
-  - msbuild /p:Configuration=Debug /p:Platform=x86 /property:CI=Travis /property:OS=Windows_NT StardewValleyMods.sln
+  - msbuild /p:Configuration=Debug /p:Platform=x86 /property:CI=Travis /property:OS=OSX StardewValleyMods.sln
