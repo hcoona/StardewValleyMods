@@ -9,7 +9,7 @@
     </When>
     <Otherwise>
       <PropertyGroup>
-        <GamePath>$(SolutionDir)\dependency\FakeStardewValley\</GamePath>
+        <GamePath>$(SolutionDir)\dependencies\FakeStardewValley\mac</GamePath>
         <DeployModFolderName></DeployModFolderName>
       </PropertyGroup>
     </Otherwise>
