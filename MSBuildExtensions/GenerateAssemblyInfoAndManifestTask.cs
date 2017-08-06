@@ -102,6 +102,8 @@ using System.Runtime.InteropServices;
                     Build = Version0.Revision
                 }
             };
+
+            Directory.CreateDirectory(Path.GetDirectoryName(OutputManifestFilePath));
             using (var fs = File.OpenWrite(OutputManifestFilePath))
             {
                 var currentCulture = Thread.CurrentThread.CurrentCulture;
